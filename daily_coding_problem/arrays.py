@@ -70,5 +70,36 @@ def smallestSortingWindow(arr:List[int]) -> tuple:
 
     return left, right
 
+# 1.3
+def maxContiguousSumBruteForce(arr: List[int]) -> int:
+    # Time: O(n^3)
+    currentMax = 0
+    for i in range(len(arr)):
+        for j in range(i, len(arr)):
+            currentMax = max(currentMax, sum(arr[i:j+1]))
+    return currentMax
+
+def maxContiguousSumKadanesAlgo(arr: List[int]) -> int:
+    # Time: O(n)
+    # Space: O(1)
+    max_so_far = max_ending_here = 0
+    for x in arr:
+        max_ending_here = max(x, max_so_far + x)
+        max_so_far = max(max_ending_here, max_so_far)
+    return max_so_far
+
+def minContiguousSum(arr: List[int]) -> int:
+    min_so_far = min_ending_here = 0
+    for x in arr:
+        min_ending_here = min(x, min_ending_here + x)
+        min_so_far = min(min_so_far, min_ending_here)
+    return min_so_far
+
+def maxContiguousWrapAroundSum(arr: List[int]) -> int:
+    max_wrap_around = sum(arr) - minContiguousSum(arr)
+    max_contiguous = maxContiguousSumKadanesAlgo(arr)
+    return max(max_wrap_around, max_contiguous)
+
+
 if __name__ == "__main__":
-    print(smallestSortingWindow([1,2,3,4,5]))
+    print(maxContiguousWrapAroundSum([34,-50,42,14,-5,86]))
