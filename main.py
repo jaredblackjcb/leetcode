@@ -1,6 +1,7 @@
 # This is a sample Python script.
 import heapq
 import types
+import bisect
 from typing import List, Optional
 import re
 import json
@@ -272,24 +273,27 @@ class TreeNode:
         self.left = left
         self.right = right
 
-class RightTreeView:
-    def getRightView(self, node):
-
-
-class Solution:
-    1   --> 1
-   2  3 --> 3
-  4     --> 4
-
-
-
+# class RightTreeView:
+#     def getRightView(self, node):
+#
+#
+# class Solution:
 
 
 if __name__ == '__main__':
-    root = TreeNode(1)
-    root.left = TreeNode(2)
-    root.right = TreeNode(3)
-    root.left.left = TreeNode(4)
+    # text = "__variable_one__ _variable_two variable_three"
+    # print(snake_to_camel(text))
+    arr = [1,2,3]
+    bisect.insort(arr, 0)
+    bisect.insort(arr, 7)
+    bisect.insort(arr, 2)
+    print(bisect.bisect_left(arr, 4))
+    print(arr)
+    arr.append(2)
+    arr2 = sorted(arr)
+    print(arr)
+    print(arr2)
+    print(arr.index(2))
 
 
 
@@ -303,14 +307,13 @@ if __name__ == '__main__':
 
 
 
-
-    heap = [3,4,1,5,2]
-    heapq.heapify(heap)
-    i, j, = 0, len(heap) - 1
-    while i < j:
-        print(f"({heap[i]}, {heap[j]})")
-        i += 1
-        j -= 1
+    # heap = [3,4,1,5,2]
+    # heapq.heapify(heap)
+    # i, j, = 0, len(heap) - 1
+    # while i < j:
+    #     print(f"({heap[i]}, {heap[j]})")
+    #     i += 1
+    #     j -= 1
 
     # print(HashmapToolbox.getMaxKey({'A':1, 'B':2}))
     # print(HashmapToolbox.getMaxKey({'A':1, 'B':1}))

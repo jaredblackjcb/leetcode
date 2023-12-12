@@ -2,6 +2,7 @@
 # [1,2,3] -> [6,3,2]
 # Edge cases:
 ## [1] -> [0]
+import bisect
 import math
 from typing import List
 
@@ -100,6 +101,23 @@ def maxContiguousWrapAroundSum(arr: List[int]) -> int:
     max_contiguous = maxContiguousSumKadanesAlgo(arr)
     return max(max_wrap_around, max_contiguous)
 
+# Returns total num of smaller elements for number at each index
+def numSmallerElements(arr: List[int]) -> List[int]:
+    sorted_arr = sorted(arr)
+    for i in range(len(arr)):
+        arr[i] = sorted_arr.index(arr[i])
+    return arr
+
+# Returns number of smaller elements to the right
+def numSmallerElementsRight(arr: List[int]) -> List[int]:
+    # Maintain a sorted list as I iterate through arr from right to left
+    sorted_arr = []
+    for i in range(len(arr) - 1, -1, -1):
+        bisect.insort(sorted_arr, arr[i])
+        arr[i] = sorted_arr.index(arr[i])
+    return arr
+
 
 if __name__ == "__main__":
-    print(maxContiguousWrapAroundSum([34,-50,42,14,-5,86]))
+    print(numSmallerElements([3,4,9,6,1]))
+    print(numSmallerElementsRight([3,4,9,6,1]))
