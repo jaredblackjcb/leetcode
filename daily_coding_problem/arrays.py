@@ -119,5 +119,17 @@ def numSmallerElementsRight(arr: List[int]) -> List[int]:
 
 
 if __name__ == "__main__":
-    print(numSmallerElements([3,4,9,6,1]))
-    print(numSmallerElementsRight([3,4,9,6,1]))
+    s = "_a"
+    s1 = "__"
+    s2 = "___"
+    s3 = "_+_"
+    print(s.split("_"))
+    print(s1.split("_"))
+    print(s2.split("_"))
+    print(s3.split("_"))
+
+    arr = [1,2,3]
+    try:
+        print(arr.index(3))
+    except ValueError:
+        print("value error")
