@@ -38,7 +38,39 @@ def findAnagramIndices(w: str, s: str) -> List[int]:
 # I would need to increment and decrement counters each time I moved an index, and make sure to delete the key for
 # any 0 values from the dict any time I decrement
 
+# 2.2 Palindrome Pairs
+def palindromePairs(arr: List[str]) -> List[tuple]:
+    ans = []
+    # Create a dictionary where the keys are the words in the arr and values are the index of the word
+    d = {}
+    for i, w in enumerate(arr):
+        # Assume all words are unique for now
+        d[w] = i
+
+    for i, prefix in enumerate(arr):
+        # Reverse each word
+        backward = prefix[::-1]
+        if prefix != backward:
+            # Check whether the original word plus the reversed segment is a palindrome
+            for j in range(len(backward)):
+                # Increment start value of slice on each iteration
+                suffix = backward[j:]
+                # Generate word to check
+                word = prefix + suffix
+                # If suffix is in dict and word is a palindrome, add the indices tuple to the answer
+                if suffix in d and isPalindrome(word):
+                    ans.append((i, d[suffix]))
+    return ans
+
+def isPalindrome(w):
+    start, end = 0, len(w) - 1
+    while start < end:
+        if w[start] != w[end]:
+            return False
+        start += 1
+        end -= 1
+    return True
 
 
 if __name__ == '__main__':
-    print(findAnagramIndices("ab", "abxaba"))
+    print(palindromePairs(["code", "edoc", "da", "d"]))
