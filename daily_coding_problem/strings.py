@@ -71,6 +71,30 @@ def isPalindrome(w):
         end -= 1
     return True
 
+# 2.3 Print Zigzag Form
+def printZigzag(s:str, lines:int) -> None:
+    # Create an array of lines where each line contains len(s) empty strings
+    line_arr = [[" "] * len(s) for _ in range(lines)]
+
+    # Loop over each char in s
+    line_num = 0
+    move_down = True
+    for i, c in enumerate(s):
+        # Use a counter to determine which line the char should be appended to
+        line_arr[line_num][i] = c
+        # The direction of the counter should begin positive but change direction every time it hits 0 or num lines - 1
+        if line_num == 0:
+            move_down = True
+        if line_num == lines - 1:
+            move_down = False
+        if move_down:
+            line_num += 1
+        else:
+            line_num -= 1
+    # Join each line back together and print all the lines
+    for line in line_arr:
+        print("".join(line))
+
 
 if __name__ == '__main__':
-    print(palindromePairs(["code", "edoc", "da", "d"]))
+    printZigzag("thisisazigzag", 4)
